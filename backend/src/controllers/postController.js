@@ -10,6 +10,22 @@ async function getPublishedPosts(req, res) {
   }
 }
 
+async function getSinglePost(req, res) {
+  const { postId } = req.params;
+  try {
+    post = await postService.getPublicPostByID(postId);
+
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    res.json(post);
+  } catch (error) {
+    console.error("Error getting post", error);
+    res.status(500).json({ error: "Failed to load desired post" });
+  }
+}
+
 async function getAllPosts(req, res) {
   try {
     const posts = await postService.getAllAdminPosts();
@@ -20,7 +36,25 @@ async function getAllPosts(req, res) {
   }
 }
 
+async function getSingleAdminPost(req, res) {
+  const { postId } = req.params;
+  try {
+    post = await postService.getAdminPostByID(postId);
+
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    res.json(post);
+  } catch (error) {
+    console.error("Error getting post", error);
+    res.status(500).json({ error: "Failed to load desired post" });
+  }
+}
+
 module.exports = {
   getPublishedPosts,
   getAllPosts,
+  getSinglePost,
+  getSingleAdminPost,
 };

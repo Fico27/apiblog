@@ -18,6 +18,18 @@ async function getPublishedPosts() {
   });
 }
 
+async function getPublicPostByID(postId) {
+  return await prisma.post.findUnique({
+    where: { id: postId, published: true },
+    include: {
+      author: { select: { username: true } },
+      comments: {
+        include: { author: { select: { username: true } } },
+      },
+    },
+  });
+}
+
 async function getAllAdminPosts() {
   return await prisma.post.findMany({
     include: {
@@ -33,7 +45,21 @@ async function getAllAdminPosts() {
   });
 }
 
+async function getAdminPostByID(postId) {
+  return await prisma.post.findUnique({
+    where: { id: postId },
+    include: {
+      author: { select: { username: true } },
+      comments: {
+        include: { author: { select: { username: true } } },
+      },
+    },
+  });
+}
+
 module.exports = {
   getPublishedPosts,
   getAllAdminPosts,
+  getPublicPostByID,
+  getAdminPostByID,
 };
