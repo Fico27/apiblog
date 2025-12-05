@@ -11,6 +11,7 @@ postRoutes.get("/posts/:postId", postController.getSinglePost);
 // Admin Routes //
 postRoutes.get("/admin/posts", postController.getAllPosts);
 postRoutes.get("/admin/posts/:postId", postController.getSingleAdminPost);
+postRoutes.post("/admin/post", postController.postPost);
 
 // Admin Routes //
 

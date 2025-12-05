@@ -30,6 +30,7 @@ async function getPublicPostByID(postId) {
   });
 }
 
+//For admin//
 async function getAllAdminPosts() {
   return await prisma.post.findMany({
     include: {
@@ -57,9 +58,29 @@ async function getAdminPostByID(postId) {
   });
 }
 
+async function postCreatePost(title, content, authorId, published = false) {
+  return await prisma.post.create({
+    data: {
+      title,
+      content,
+      published,
+      author: { connect: { id: authorId } },
+    },
+    include: {
+      author: {
+        id: true,
+        username: true,
+      },
+    },
+  });
+}
+
+//For admin//
+
 module.exports = {
   getPublishedPosts,
   getAllAdminPosts,
   getPublicPostByID,
   getAdminPostByID,
+  postCreatePost,
 };

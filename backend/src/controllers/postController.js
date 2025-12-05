@@ -1,5 +1,6 @@
 const postService = require("../services/postService");
 
+//For users//
 async function getPublishedPosts(req, res) {
   try {
     const posts = await postService.getPublishedPosts();
@@ -25,7 +26,9 @@ async function getSinglePost(req, res) {
     res.status(500).json({ error: "Failed to load desired post" });
   }
 }
+//For users//
 
+//For admin//
 async function getAllPosts(req, res) {
   try {
     const posts = await postService.getAllAdminPosts();
@@ -52,9 +55,31 @@ async function getSingleAdminPost(req, res) {
   }
 }
 
+async function postPost(req, res) {
+  try {
+    const { title, content, published } = req.body;
+
+    //When i add auth I can pull authorId from that
+    const newPost = await postService.postCreatePost(
+      title,
+      content,
+      authorId,
+      published
+    );
+
+    res.status(201).json(newPost);
+  } catch (error) {
+    console.error("Error creating post", error);
+    res.status(503).json({ error: "Failed to create post" });
+  }
+}
+
+//For admin//
+
 module.exports = {
   getPublishedPosts,
   getAllPosts,
   getSinglePost,
   getSingleAdminPost,
+  postPost,
 };
