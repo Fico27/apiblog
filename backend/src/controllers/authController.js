@@ -28,7 +28,7 @@ async function postLogin(req, res) {
       },
     });
   } catch (error) {
-    console.error(error);
+    console.error("Login failed", error);
     res.status(500).json({ error: "Login failed" });
   }
 }
