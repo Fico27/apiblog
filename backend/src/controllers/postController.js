@@ -1,3 +1,4 @@
+const prisma = require("../lib/prisma");
 const postService = require("../services/postService");
 
 //For users//
@@ -74,6 +75,23 @@ async function postPost(req, res) {
   }
 }
 
+async function deleteAdminPost(req, res) {
+  try {
+    const { postId } = req.params;
+
+    await postService.deletePost(postId);
+
+    res.status(204).end();
+  } catch (error) {
+    if (error.code === "P2025") {
+      res.status(404).json({ error: "Post not found" });
+    } else {
+      console.error("Error deleting post", error);
+      res.status(500).json({ error: "Error deleting post" });
+    }
+  }
+}
+
 //For admin//
 
 module.exports = {
@@ -82,4 +100,5 @@ module.exports = {
   getSinglePost,
   getSingleAdminPost,
   postPost,
+  deleteAdminPost,
 };

@@ -75,6 +75,12 @@ async function postCreatePost(title, content, authorId, published = false) {
   });
 }
 
+async function deletePost(postId) {
+  return await prisma.post.delete({
+    where: { id: postId },
+  });
+}
+
 //For admin//
 
 module.exports = {
@@ -83,4 +89,5 @@ module.exports = {
   getPublicPostByID,
   getAdminPostByID,
   postCreatePost,
+  deletePost,
 };

@@ -27,6 +27,12 @@ postRoutes.get(
 );
 postRoutes.post("/admin/post", verifyUser(["admin"]), postController.postPost);
 
+postRoutes.delete(
+  "/admin/posts/:postId",
+  verifyUser(["admin"]),
+  postController.deleteAdminPost
+);
+
 // Admin Routes //
 
 module.exports = postRoutes;

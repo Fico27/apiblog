@@ -20,7 +20,7 @@ model User {
   password String
   role String @default("user")
   posts Post[]
-  comments Comment[]
+  comments Comment[] 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -34,7 +34,7 @@ model Post{
   published Boolean @default(false) // Needs to be switched to true in order to show later on.
   author User @relation(fields: [authorId], references: [id])
   authorId String
-  comments Comment[]
+  comments Comment[] 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   publishedAt DateTime?
