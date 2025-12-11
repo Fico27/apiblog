@@ -5,13 +5,13 @@ const commentController = require("../controllers/commentController");
 const verifyCommentOwnerOrAdmin = require("../middleware/verifyCommentOwnerOrAdmin");
 
 commentRouter.post(
-  "/posts/:postId/comments",
+  "/:postId/comments",
   verifyUser(["user", "admin"]),
   commentController.postComment
 );
 
 commentRouter.delete(
-  "/:commentId",
+  "/comments/:commentId",
   verifyUser(["user", "admin"]),
   verifyCommentOwnerOrAdmin,
   commentController.deleteComment
