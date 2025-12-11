@@ -18,4 +18,12 @@ async function createComment(content, authorId, postId) {
   });
 }
 
-module.exports = { createComment };
+async function deleteComment(commentId) {
+  return await prisma.comment.delete({
+    where: {
+      id: commentId,
+    },
+  });
+}
+
+module.exports = { createComment, deleteComment };

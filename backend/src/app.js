@@ -1,6 +1,7 @@
 const express = require("express");
 const postRoutes = require("./routes/postRoutes");
-const AuthRoutes = require("./routes/authRoutes");
+const authRoutes = require("./routes/authRoutes");
+const commentRoutes = require("./routes/commentsRoutes");
 
 const app = express();
 app.use(express.json());
@@ -8,7 +9,8 @@ app.use(express.json());
 //Setup quick test.
 
 app.use("/api", postRoutes);
-app.use("/api/auth", AuthRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/posts", commentRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

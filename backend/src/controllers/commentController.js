@@ -18,4 +18,16 @@ async function postComment(req, res) {
   }
 }
 
-module.exports = { postComment };
+async function deleteComment(req, res) {
+  const commentId = req.params;
+
+  try {
+    await commentService.deleteComment(commentId);
+
+    res.status(204).end();
+  } catch (error) {
+    console.error("Error deleting comment", error);
+    res.status(500).json({ error: "Failed to delete comment" });
+  }
+}
+module.exports = { postComment, deleteComment };

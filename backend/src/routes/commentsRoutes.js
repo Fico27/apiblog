@@ -9,3 +9,5 @@ commentRouter.post(
   verifyUser(["user", "admin"]),
   commentController.postComment
 );
+
+module.exports = commentRouter;
