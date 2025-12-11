@@ -7,11 +7,7 @@ const commentController = require("../controllers/commentController");
 // Regular User Routes //
 postRoutes.get("/posts", postController.getPublishedPosts);
 postRoutes.get("/posts/:postId", postController.getSinglePost);
-postRoutes.post(
-  "/posts/:postId/comments",
-  verifyUser(["user", "admin"]),
-  commentController.postComment
-);
+
 //Regular User Routes //
 
 // Admin Routes //
