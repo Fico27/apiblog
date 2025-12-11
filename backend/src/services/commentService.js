@@ -26,4 +26,13 @@ async function deleteComment(commentId) {
   });
 }
 
-module.exports = { createComment, deleteComment };
+async function updateComment(commentId, update) {
+  return await prisma.comment.update({
+    where: {
+      id: commentId,
+    },
+    data: update,
+  });
+}
+
+module.exports = { createComment, deleteComment, updateComment };

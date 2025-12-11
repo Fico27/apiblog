@@ -17,4 +17,11 @@ commentRouter.delete(
   commentController.deleteComment
 );
 
+commentRouter.patch(
+  "/comments/:commentId",
+  verifyUser(["user", "admin"]),
+  verifyCommentOwnerOrAdmin,
+  commentController.editComment
+);
+
 module.exports = commentRouter;

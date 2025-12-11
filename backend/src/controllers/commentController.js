@@ -19,9 +19,9 @@ async function postComment(req, res) {
 }
 
 async function deleteComment(req, res) {
-  const { commentId } = req.params;
-
   try {
+    const { commentId } = req.params;
+
     await commentService.deleteComment(commentId);
 
     res.status(204).end();
@@ -34,4 +34,22 @@ async function deleteComment(req, res) {
     res.status(500).json({ error: "Failed to delete comment" });
   }
 }
-module.exports = { postComment, deleteComment };
+
+async function editComment(req, res) {
+  try {
+    const { commentId } = req.params;
+    const update = req.body;
+
+    const comment = await commentService.editComment(commentId, update);
+
+    res.status(200).json(comment);
+  } catch (error) {
+    if (error.code === "P2025") {
+      return res.status(404).json({ error: "Comment not found" });
+    }
+
+    console.error("Error updating comment", error);
+    res.status(500).json({ error: "Failed to update comment" });
+  }
+}
+module.exports = { postComment, deleteComment, editComment };
