@@ -68,7 +68,7 @@ async function postPost(req, res) {
       published
     );
 
-    res.status(201).json(newPost);
+    return res.status(201).json(newPost);
   } catch (error) {
     console.error("Error creating post", error);
     res.status(503).json({ error: "Failed to create post" });
@@ -81,14 +81,31 @@ async function deleteAdminPost(req, res) {
 
     await postService.deletePost(postId);
 
-    res.status(204).end();
+    return res.status(204).end();
   } catch (error) {
     if (error.code === "P2025") {
-      res.status(404).json({ error: "Post not found" });
+      return res.status(404).json({ error: "Post not found" });
     } else {
       console.error("Error deleting post", error);
-      res.status(500).json({ error: "Error deleting post" });
+      return res.status(500).json({ error: "Error deleting post" });
     }
+  }
+}
+
+async function updateAdminPost(req, res) {
+  try {
+    const { postId } = req.params;
+    const updates = req.body;
+
+    const post = await postService.updatePost(postId, updates);
+
+    res.status(200).json(post);
+  } catch (error) {
+    if (error.code === "P2025") {
+      return res.status(404).json({ error: "Post not found" });
+    }
+    console.error("Error updating post", error);
+    return res.status(500).json({ error: "Error updating post" });
   }
 }
 
@@ -101,4 +118,5 @@ module.exports = {
   getSingleAdminPost,
   postPost,
   deleteAdminPost,
+  updateAdminPost,
 };

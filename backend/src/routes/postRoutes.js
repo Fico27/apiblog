@@ -33,6 +33,12 @@ postRoutes.delete(
   postController.deleteAdminPost
 );
 
+postRoutes.patch(
+  "/admin/posts/:postId",
+  verifyUser(["admin"]),
+  postController.updateAdminPost
+);
+
 // Admin Routes //
 
 module.exports = postRoutes;

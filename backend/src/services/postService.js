@@ -81,6 +81,15 @@ async function deletePost(postId) {
   });
 }
 
+async function updatePost(postId, updates) {
+  return await prisma.post.update({
+    where: {
+      id: postId,
+    },
+    data: updates,
+  });
+}
+
 //For admin//
 
 module.exports = {
@@ -90,4 +99,5 @@ module.exports = {
   getAdminPostByID,
   postCreatePost,
   deletePost,
+  updatePost,
 };
