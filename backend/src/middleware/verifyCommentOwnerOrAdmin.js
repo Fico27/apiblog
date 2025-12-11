@@ -14,7 +14,7 @@ async function verifyCommentOwnerOrAdmin(req, res, next) {
     return res.status(404).json({ error: "Comment not found" });
   }
 
-  if (comment.authorId !== req.user.id || req.user.role !== "admin") {
+  if (comment.authorId !== req.user.id && req.user.role !== "admin") {
     return res
       .status(403)
       .json({ error: "You are not authorized to delete this comment" });
