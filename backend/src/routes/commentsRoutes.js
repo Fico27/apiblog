@@ -10,4 +10,10 @@ commentRouter.post(
   commentController.postComment
 );
 
+commentRouter.delete(
+  "/:postId/comments/:commentId",
+  verifyUser(["user", "admin"]),
+  commentController.deleteComment
+);
+
 module.exports = commentRouter;
