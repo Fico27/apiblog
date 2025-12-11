@@ -1,8 +1,8 @@
 const Router = require("express");
 const commentRouter = Router();
-
 const { verifyUser } = require("../middleware/verifyUser");
 const commentController = require("../controllers/commentController");
+const verifyCommentOwnerOrAdmin = require("../middleware/verifyCommentOwnerOrAdmin");
 
 commentRouter.post(
   "/posts/:postId/comments",
@@ -11,8 +11,9 @@ commentRouter.post(
 );
 
 commentRouter.delete(
-  "/:postId/comments/:commentId",
+  "/:commentId",
   verifyUser(["user", "admin"]),
+  verifyCommentOwnerOrAdmin,
   commentController.deleteComment
 );
 

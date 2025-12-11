@@ -19,13 +19,17 @@ async function postComment(req, res) {
 }
 
 async function deleteComment(req, res) {
-  const commentId = req.params;
+  const { commentId } = req.params;
 
   try {
     await commentService.deleteComment(commentId);
 
     res.status(204).end();
   } catch (error) {
+    if (error.code === "P2025") {
+      return res.status(404).json({ error: "Comment not found" });
+    }
+
     console.error("Error deleting comment", error);
     res.status(500).json({ error: "Failed to delete comment" });
   }
