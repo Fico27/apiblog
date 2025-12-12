@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const { signToken } = require("../utils/jwt");
-const loginSerice = require("../services/loginSerice");
-const userService = require("../services/userService")
+const loginSerice = require("../services/loginService");
+const userService = require("../services/userService");
 
 async function postLogin(req, res) {
   try {
@@ -34,12 +34,35 @@ async function postLogin(req, res) {
   }
 }
 
-async function registerUser(req, res){
-  try{
-    const {username, email, password} = req.body;
+async function registerUser(req, res) {
+  try {
+    const { username, email, password } = req.body;
 
+    const user = await userService.createUser({ username, email, password });
 
+    return res.status(201).json({ user });
+  } catch (error) {
+    console.error("Error creating user", error);
+    res.status(500).json({ error: "Error creating user" });
   }
 }
 
-module.exports = { postLogin };
+async function registerAdmin(req, res) {
+  try {
+    const { username, email, password } = req.body;
+
+    const user = await userService.createUser({
+      username,
+      email,
+      password,
+      role: "admin",
+    });
+
+    return res.status(201).json({ user });
+  } catch (error) {
+    console.error("Error creating user", error);
+    res.status(500).json({ error: "Error creating user" });
+  }
+}
+
+module.exports = { postLogin, registerUser, registerAdmin };
