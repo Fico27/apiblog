@@ -15,7 +15,7 @@ async function getPublishedPosts(req, res) {
 async function getSinglePost(req, res) {
   const { postId } = req.params;
   try {
-    post = await postService.getPublicPostByID(postId);
+    const post = await postService.getPublicPostByID(postId);
 
     if (!post) {
       return res.status(404).json({ error: "Post not found" });
@@ -36,14 +36,14 @@ async function getAllPosts(req, res) {
     res.json(posts);
   } catch (error) {
     console.error("Error getting all posts", error);
-    res.status(500).json({ erro: "Failed to load all posts" });
+    res.status(500).json({ error: "Failed to load all posts" });
   }
 }
 
 async function getSingleAdminPost(req, res) {
   const { postId } = req.params;
   try {
-    post = await postService.getAdminPostByID(postId);
+    const post = await postService.getAdminPostByID(postId);
 
     if (!post) {
       return res.status(404).json({ error: "Post not found" });
@@ -59,6 +59,7 @@ async function getSingleAdminPost(req, res) {
 async function postPost(req, res) {
   try {
     const { title, content, published } = req.body;
+    const authorId = req.user.id;
 
     //When i add auth I can pull authorId from that
     const newPost = await postService.postCreatePost(
