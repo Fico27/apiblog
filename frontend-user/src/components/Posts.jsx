@@ -8,7 +8,7 @@ function Posts() {
 
   useEffect(() => {
     // I will fetch posts from the backend API here... Just gotta set that up.
-  });
+  }, []);
 
   return (
     <div className="posts-container">{/* posts.map(blah blah blah) */}</div>
