@@ -7,8 +7,6 @@ function Posts() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // I will fetch posts from the backend API here... Just gotta set that up.
-
     async function fetchPosts() {
       try {
         const response = await fetch("/api/posts");
@@ -29,7 +27,7 @@ function Posts() {
 
   return (
     <div className="posts-container">
-      {posts.map((post) => {
+      {posts.map((post) => (
         <div key={post.id} className="post-card">
           <h2>{post.title}</h2>
           <p>
@@ -39,8 +37,8 @@ function Posts() {
           {/* To show a little bit of the post */}
           <p>{post.content.substring(0, 200)}...</p>
           <a href={`/posts/${post.id}`}>Read More</a>
-        </div>;
-      })}
+        </div>
+      ))}
     </div>
   );
 }

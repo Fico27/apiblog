@@ -5,7 +5,7 @@ const postService = require("../services/postService");
 async function getPublishedPosts(req, res) {
   try {
     const posts = await postService.getPublishedPosts();
-    res.json(posts);
+    res.status(200).json(posts);
   } catch (error) {
     console.error("Error getting published posts", error);
     res.status(500).json({ error: "Failed to load posts" });
