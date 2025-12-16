@@ -14,7 +14,7 @@ function NavBar() {
             <a href="">Sign up</a>
           </li>
           <li>
-            <a href="">Log in</a>
+            <NavLink to="/login">Login</NavLink>
           </li>
         </ul>
       </nav>
