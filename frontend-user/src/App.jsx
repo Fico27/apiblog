@@ -3,7 +3,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import Posts from "./components/Posts";
 import PostContent from "./components/PostContent";
-import Login from "./pages/Login";
+import Login from "./components/Login";
 
 function App() {
   return (

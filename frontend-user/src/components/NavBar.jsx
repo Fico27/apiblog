@@ -8,7 +8,7 @@ function NavBar() {
       <nav className="nav-container">
         <ul>
           <li>
-            <a href="">Home</a>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
             <a href="">Sign up</a>
