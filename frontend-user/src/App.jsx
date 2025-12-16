@@ -1,14 +1,21 @@
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import Posts from "./components/Posts";
+import PostContent from "./components/PostContent";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <Posts />
-      <h1>I am the test page for stuff.</h1>
-      <p>I am an extra to not delete the Div</p>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Posts />} />
+          <Route path="/posts/:postId" element={<PostContent />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

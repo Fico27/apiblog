@@ -1,4 +1,5 @@
-import { useState, useEffect, useParams } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 function PostContent() {
   const [post, setPost] = useState(null);
@@ -34,11 +35,27 @@ function PostContent() {
   if (!post) return <p>Post not found!</p>;
 
   return (
-    <div className="post-container">
-      <h1>{post.title}</h1>
-      <p>By: {post.author}</p>
-      <p>{post.content}</p>
-    </div>
+    <>
+      <div className="post-container">
+        <h1>{post.title}</h1>
+        <p>By: {post.author.username}</p>
+        <p>{post.content}</p>
+      </div>
+
+      <div className="comments-container">
+        <h2>Comments</h2>
+        {post.comments && post.comments.length > 0 ? (
+          post.comments.map((comment) => (
+            <div key={comment.id} className="comment-card">
+              <p className="comment-author">{comment.author.username}</p>
+              <p>{comment.content}</p>
+            </div>
+          ))
+        ) : (
+          <p>No comments yet. Be the first to comment!</p>
+        )}
+      </div>
+    </>
   );
 }
 
