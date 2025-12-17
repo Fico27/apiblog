@@ -5,9 +5,9 @@ const userService = require("../services/userService");
 
 async function postLogin(req, res) {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    const user = await loginSerice.login(username);
+    const user = await loginSerice.login(email);
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ error: "Invalid credentials" });

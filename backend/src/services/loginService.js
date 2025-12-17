@@ -1,8 +1,8 @@
 const prisma = require("../lib/prisma");
 
-async function login(username) {
+async function login(email) {
   return await prisma.user.findUnique({
-    where: { username },
+    where: { email },
   });
 }
 
