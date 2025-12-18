@@ -9,7 +9,20 @@ function Posts() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const response = await fetch("/api/admin/posts");
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+          setError("Please log in as admin");
+          setLoading(false);
+          return;
+        }
+
+        const response = await fetch("/api/admin/posts", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
         if (!response.ok) throw new Error("Failed to fetch posts");
         const data = await response.json();
         setPosts(data);

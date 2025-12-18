@@ -1,5 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import NavBar from "./components/NavBar";
+import Posts from "./components/Posts";
+import PostContent from "./components/PostContent";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -9,8 +13,8 @@ function App() {
         <Routes>
           <Route path="/posts" element={<Posts />} />
           <Route path="/posts/:postId" element={<PostContent />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/new-post" element={<CreatePost />} />
+          <Route path="/" element={<Login />} />
+          {/* <Route path="/new-post" element={<CreatePost />} /> */}
         </Routes>
       </BrowserRouter>
     </>
