@@ -14,9 +14,21 @@ function PostContent() {
       return;
     }
 
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      setError("Please log in as admin");
+      setLoading(false);
+      return;
+    }
+
     async function fetchPost() {
       try {
-        const response = await fetch(`/api/admin/posts/${postId}`);
+        const response = await fetch(`/api/admin/posts/${postId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (!response.ok) throw new Error("Failed to fetch posts");
         const data = await response.json();
         setPost(data);
