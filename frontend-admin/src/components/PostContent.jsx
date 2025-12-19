@@ -59,10 +59,8 @@ function PostContent() {
     setLoading(true);
 
     try {
-      // Change this to correct API ROUTE
-
       const token = localStorage.getItem("token");
-      const response = await fetch(`api/admin/posts/${postId}`, {
+      const response = await fetch(`/api/admin/posts/${postId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
