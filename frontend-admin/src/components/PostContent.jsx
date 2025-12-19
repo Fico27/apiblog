@@ -4,13 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 function PostContent() {
   const [post, setPost] = useState(null);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [published, setPublished] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { postId } = useParams();
-  const [title, setTitle] = useState(post.title || "");
-  const [content, setContent] = useState(post.content || "");
-  const [published, setPublished] = useState(post.published || false);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,6 +41,14 @@ function PostContent() {
     fetchPost();
   }, [postId]);
 
+  useEffect(() => {
+    if (post) {
+      setTitle(post.title || "");
+      setContent(post.content || "");
+      setPublished(post.published);
+    }
+  }, [post]);
+
   if (loading) return <p>Loading Post...</p>;
   if (error) return <p>Error loading posts: {error}</p>;
   if (!post) return <p>Post not found!</p>;
@@ -53,10 +60,13 @@ function PostContent() {
 
     try {
       // Change this to correct API ROUTE
-      const response = await fetch(`/admin/posts/${postId}`, {
+
+      const token = localStorage.getItem("token");
+      const response = await fetch(`api/admin/posts/${postId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ title, content, published }),
       });
@@ -103,6 +113,9 @@ function PostContent() {
           />
 
           <button type="submit">Submit</button>
+          <button type="button" onClick={() => navigate("/posts")}>
+            Cancel
+          </button>
         </form>
       </div>
     </>
