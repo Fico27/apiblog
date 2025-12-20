@@ -66,10 +66,17 @@ async function postCreatePost(title, content, authorId, published = false) {
       published,
       author: { connect: { id: authorId } },
     },
-    include: {
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      published: true,
+      createdAt: true,
       author: {
-        id: true,
-        username: true,
+        select: {
+          id: true,
+          username: true,
+        },
       },
     },
   });
