@@ -21,7 +21,7 @@ postRoutes.get(
   verifyUser(["admin"]),
   postController.getSingleAdminPost
 );
-postRoutes.post("/admin/post", verifyUser(["admin"]), postController.postPost);
+postRoutes.post("/admin/posts", verifyUser(["admin"]), postController.postPost);
 
 postRoutes.delete(
   "/admin/posts/:postId",
