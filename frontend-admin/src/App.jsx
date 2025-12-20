@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import Posts from "./components/Posts";
 import PostContent from "./components/PostContent";
 import Login from "./components/Login";
+import NewPost from "./components/NewPost";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Route path="/posts" element={<Posts />} />
           <Route path="/posts/:postId" element={<PostContent />} />
           <Route path="/" element={<Login />} />
-          {/* <Route path="/new-post" element={<CreatePost />} /> */}
+          <Route path="/new-post" element={<NewPost />} />
         </Routes>
       </BrowserRouter>
     </>

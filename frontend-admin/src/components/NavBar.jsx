@@ -10,7 +10,9 @@ function NavBar() {
           <li>
             <NavLink to="/">All Posts</NavLink>
           </li>
-
+          <li>
+            <NavLink to="/new-post">Create New Post</NavLink>
+          </li>
           <li>
             <NavLink to="/logout">Logout</NavLink>
           </li>

@@ -50,7 +50,7 @@ function NewPost() {
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Email"
+            placeholder="Title"
             required
           />
 
