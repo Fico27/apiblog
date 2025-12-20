@@ -44,7 +44,6 @@ function Posts() {
         <div key={post.id} className="post-card">
           <h2>{post.title}</h2>
           <p>Posted on: {new Date(post.createdAt).toLocaleDateString()}</p>
-          {/* REMEMBER TO SWITCH  BELOW TO REACT DOM LINK */}
           <p>{post.published ? "Published" : "Not Published Yet"}</p>
           <a href={`/posts/${post.id}`}>Edit</a>
         </div>
