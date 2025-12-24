@@ -7,7 +7,7 @@ async function verifyCommentOwnerOrAdmin(req, res, next) {
     where: {
       id: commentId,
     },
-    select: { authorId },
+    select: { authorId: true },
   });
 
   if (!comment) {
