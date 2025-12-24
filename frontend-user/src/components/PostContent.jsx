@@ -6,6 +6,9 @@ function PostContent() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { postId } = useParams();
+  const currentUser = JSON.parse(localStorage.getItem("user") || "null");
+  const [editingCommentId, setEditingCommentId] = useState(null);
+  const [editContent, setEditContent] = useState("");
 
   useEffect(() => {
     if (!postId) {
@@ -30,6 +33,40 @@ function PostContent() {
     fetchPost();
   }, [postId]);
 
+  const handleCommentDelete = async (commentId) => {
+    if (
+      !confirm(
+        "Are you sure you want to delete this comment? This can not be undone."
+      )
+    ) {
+      return;
+    }
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`/api/comments/${commentId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || "Login Failed");
+      }
+      //After Deleting comment filter the comment out
+      setPost((prevPost) => ({
+        ...prevPost,
+        comments: prevPost.comments.filter((c) => c.id !== commentId),
+      }));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (loading) return <p>Loading Post...</p>;
   if (error) return <p>Error loading posts: {error}</p>;
   if (!post) return <p>Post not found!</p>;
@@ -49,6 +86,25 @@ function PostContent() {
             <div key={comment.id} className="comment-card">
               <p className="comment-author">{comment.author.username}</p>
               <p>{comment.content}</p>
+
+              {currentUser && currentUser.id === comment.authorId && (
+                <button
+                  onClick={() => {
+                    setEditingCommentId(comment.id);
+                    setEditContent(comment.content);
+                  }}
+                >
+                  Edit
+                </button>
+              )}
+
+              {currentUser &&
+                (currentUser.id === comment.authorId ||
+                  currentUser.role === "admin") && (
+                  <button onClick={() => handleCommentDelete(comment.id)}>
+                    Delete
+                  </button>
+                )}
             </div>
           ))
         ) : (
