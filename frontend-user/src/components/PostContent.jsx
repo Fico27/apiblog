@@ -5,11 +5,13 @@ function PostContent() {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [comment, setComment] = useState("");
   const { postId } = useParams();
   const currentUser = JSON.parse(localStorage.getItem("user") || "null");
   const [editingCommentId, setEditingCommentId] = useState(null);
   const [editContent, setEditContent] = useState("");
 
+  // Load post and comments
   useEffect(() => {
     if (!postId) {
       setError("No post ID provided");
@@ -99,6 +101,42 @@ function PostContent() {
     }
   };
 
+  const handleCommentCreate = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`/api/posts/${postId}/comments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ content: comment }),
+      });
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || "Login Failed");
+      }
+
+      const newComment = await response.json();
+
+      setPost((prev) => ({
+        ...prev,
+        comments: [...prev.comments, newComment],
+      }));
+
+      setComment("");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (loading) return <p>Loading Post...</p>;
   if (error) return <p>Error loading posts: {error}</p>;
   if (!post) return <p>Post not found!</p>;
@@ -113,6 +151,7 @@ function PostContent() {
 
       <div className="comments-container">
         <h2>Comments</h2>
+
         {post.comments && post.comments.length > 0 ? (
           post.comments.map((comment) => (
             <div key={comment.id} className="comment-card">
@@ -164,6 +203,19 @@ function PostContent() {
         ) : (
           <p>No comments yet. Be the first to comment!</p>
         )}
+
+        <form className="comments-form" onSubmit={handleCommentCreate}>
+          <input
+            type="text"
+            id="comment"
+            value={comment}
+            placeholder="Leave a comment..."
+            onChange={(e) => setComment(e.target.value)}
+            required
+          />
+
+          <button type="submit">Post Comment</button>
+        </form>
       </div>
     </>
   );
