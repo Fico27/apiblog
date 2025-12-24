@@ -85,7 +85,16 @@ function PostContent() {
           post.comments.map((comment) => (
             <div key={comment.id} className="comment-card">
               <p className="comment-author">{comment.author.username}</p>
-              <p>{comment.content}</p>
+
+              {comment.id === editingCommentId ? (
+                <textarea
+                  value={editContent}
+                  onChange={(e) => setEditContent(e.target.value)}
+                  rows="3"
+                ></textarea>
+              ) : (
+                <p>{comment.content}</p>
+              )}
 
               {currentUser && currentUser.id === comment.authorId && (
                 <button
