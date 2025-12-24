@@ -40,7 +40,7 @@ async function editComment(req, res) {
     const { commentId } = req.params;
     const update = req.body;
 
-    const comment = await commentService.editComment(commentId, update);
+    const comment = await commentService.updateComment(commentId, update);
 
     res.status(200).json(comment);
   } catch (error) {
