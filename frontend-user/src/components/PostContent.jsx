@@ -43,7 +43,7 @@ function PostContent() {
     }
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`/api/comments/${commentId}`, {
+      const response = await fetch(`/api/posts/comments/${commentId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +70,7 @@ function PostContent() {
   const handleCommentEdit = async (commentId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`/api/comments/${commentId}`, {
+      const response = await fetch(`/api/posts/comments/${commentId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
