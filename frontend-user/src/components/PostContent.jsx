@@ -67,6 +67,38 @@ function PostContent() {
     }
   };
 
+  const handleCommentEdit = async (commentId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`/api/comments/${commentId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ content: editContent }),
+      });
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || "Login Failed");
+      }
+
+      setPost((prev) => ({
+        ...prev,
+        comments: prev.comments.map((c) =>
+          c.id === commentId ? { ...c, content: editContent } : c
+        ),
+      }));
+
+      setEditingCommentId(null);
+      setEditContent("");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (loading) return <p>Loading Post...</p>;
   if (error) return <p>Error loading posts: {error}</p>;
   if (!post) return <p>Post not found!</p>;
@@ -87,11 +119,24 @@ function PostContent() {
               <p className="comment-author">{comment.author.username}</p>
 
               {comment.id === editingCommentId ? (
-                <textarea
-                  value={editContent}
-                  onChange={(e) => setEditContent(e.target.value)}
-                  rows="3"
-                ></textarea>
+                <>
+                  <textarea
+                    value={editContent}
+                    onChange={(e) => setEditContent(e.target.value)}
+                    rows="3"
+                  ></textarea>
+                  <button onClick={() => handleCommentEdit(editingCommentId)}>
+                    Save
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditingCommentId(null);
+                      setEditContent("");
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </>
               ) : (
                 <p>{comment.content}</p>
               )}
