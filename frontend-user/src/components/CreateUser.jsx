@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import "../styles/CreateUser.css";
 
 function CreateUser() {
   const [username, setUsername] = useState("");
@@ -59,11 +60,11 @@ function CreateUser() {
 
   return (
     <div className="create-user-container">
-      <h2>Sign up here!</h2>
+      <h2 className="signup-title">Sign up here!</h2>
 
       {error && <p className="error">{error}</p>}
 
-      <form onSubmit={handleSubmit}>
+      <form className="signup-form" onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
         <input
           type="text"
@@ -111,6 +112,9 @@ function CreateUser() {
         <button type="submit">
           {loading ? "Creating Account..." : "Create Account!"}
         </button>
+        <p className="already-user">
+          Already have an account? <NavLink to="/login">Log in</NavLink>
+        </p>
       </form>
     </div>
   );
