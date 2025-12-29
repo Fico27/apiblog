@@ -16,10 +16,42 @@
 
 .comment-card {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 
   padding: 1rem;
   width: 25%;
   border: 1px solid black;
+}
+
+.comment-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.comment-author {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.comment-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.comment-actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #f0f0f0;
+  font-size: 0.9rem;
+}
+
+.comment-actions button:hover {
+  background: #e0e0e0;
 }

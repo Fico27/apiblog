@@ -1,0 +1,19 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 3rem 4rem;
+  border-radius: 5px;
+  gap: 0.5rem;
+}
+
+.login-title {
+  margin: 1rem 0;
+}
