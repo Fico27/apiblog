@@ -19,3 +19,9 @@
   align-items: center;
   width: 100%;
 }
+
+.nav-container ul li {
+  border: 1px solid black;
+  padding: 0.5rem;
+  border-radius: 5px;
+}

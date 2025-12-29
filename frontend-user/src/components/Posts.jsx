@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "../styles/Posts.css";
 
 function Posts() {
   // Will get all post info here from backend
