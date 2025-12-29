@@ -1,0 +1,25 @@
+.post-container,
+.comments-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.comments-container {
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.comment-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem;
+  width: 25%;
+  border: 1px solid black;
+}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "../styles/PostContent.css";
 
 function PostContent() {
   const [post, setPost] = useState(null);
