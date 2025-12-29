@@ -4,7 +4,7 @@ import "../styles/NavBar.css";
 function NavBar() {
   return (
     <div className="navbar-container">
-      <h2>I Am Your Blog</h2>
+      <h2 className="navbar-title">I Am Your Blog</h2>
 
       <nav className="nav-container">
         <ul>
