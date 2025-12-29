@@ -36,8 +36,10 @@ function Posts() {
             {new Date(post.createdAt).toLocaleDateString()}
           </p>
           {/* To show a little bit of the post */}
-          <p>{post.content.substring(0, 200)}...</p>
-          <a href={`/posts/${post.id}`}>Read More</a>
+          <p className="summary">{post.content.substring(0, 200)}...</p>
+          <a className="read-link" href={`/posts/${post.id}`}>
+            Read More
+          </a>
         </div>
       ))}
     </div>
