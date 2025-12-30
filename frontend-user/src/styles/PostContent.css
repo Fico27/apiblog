@@ -13,7 +13,6 @@
   margin-top: 1rem;
   width: 100%;
   height: 100vh;
-  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); */
 }
 
 .comments-container h2 {
@@ -22,17 +21,21 @@
 
 .comment-card {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   padding: 1rem;
   width: 25%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   background: white;
-  /* padding: 1.5rem; */
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+.edit-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .comment-author {
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -59,4 +62,28 @@
 
 .comments-form {
   margin: 1rem;
+}
+
+.comment-btns1 {
+  background-color: white;
+  margin-top: 0;
+  padding: 0.2rem;
+}
+
+.comment-btns1:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.comment-btns2 {
+  margin-top: 0;
+  padding: 0.5rem;
+}
+
+.comment-btns2:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #007bff;
+}
+
+.comment-btns1 img {
+  width: 30px;
 }

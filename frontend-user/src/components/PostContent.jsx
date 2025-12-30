@@ -178,10 +178,14 @@ function PostContent() {
                     onChange={(e) => setEditContent(e.target.value)}
                     rows="3"
                   ></textarea>
-                  <button onClick={() => handleCommentEdit(editingCommentId)}>
+                  <button
+                    className="comment-btns2"
+                    onClick={() => handleCommentEdit(editingCommentId)}
+                  >
                     Save
                   </button>
                   <button
+                    className="comment-btns2"
                     onClick={() => {
                       setEditingCommentId(null);
                       setEditContent("");
@@ -193,17 +197,18 @@ function PostContent() {
               ) : (
                 <p>{comment.content}</p>
               )}
-              <div>
+              <div className="edit-btns">
                 {currentUser &&
                   currentUser.id === comment.authorId &&
                   comment.id !== editingCommentId && (
                     <button
+                      className="comment-btns1"
                       onClick={() => {
                         setEditingCommentId(comment.id);
                         setEditContent(comment.content);
                       }}
                     >
-                      Edit
+                      <img src="/assets/edit.png" alt="" />
                     </button>
                   )}
 
@@ -211,8 +216,11 @@ function PostContent() {
                   (currentUser.id === comment.authorId ||
                     currentUser.role === "admin") &&
                   comment.id !== editingCommentId && (
-                    <button onClick={() => handleCommentDelete(comment.id)}>
-                      Delete
+                    <button
+                      className="comment-btns1"
+                      onClick={() => handleCommentDelete(comment.id)}
+                    >
+                      <img src="/assets/delete.png" alt="" />
                     </button>
                   )}
               </div>
