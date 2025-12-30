@@ -153,6 +153,19 @@ function PostContent() {
       <div className="comments-container">
         <h2>Comments</h2>
 
+        <form className="comments-form" onSubmit={handleCommentCreate}>
+          <input
+            type="text"
+            id="comment"
+            value={comment}
+            placeholder="Leave a comment..."
+            onChange={(e) => setComment(e.target.value)}
+            required
+          />
+
+          <button type="submit">Post Comment</button>
+        </form>
+
         {post.comments && post.comments.length > 0 ? (
           post.comments.map((comment) => (
             <div key={comment.id} className="comment-card">
@@ -180,43 +193,34 @@ function PostContent() {
               ) : (
                 <p>{comment.content}</p>
               )}
+              <div>
+                {currentUser &&
+                  currentUser.id === comment.authorId &&
+                  comment.id !== editingCommentId && (
+                    <button
+                      onClick={() => {
+                        setEditingCommentId(comment.id);
+                        setEditContent(comment.content);
+                      }}
+                    >
+                      Edit
+                    </button>
+                  )}
 
-              {currentUser && currentUser.id === comment.authorId && (
-                <button
-                  onClick={() => {
-                    setEditingCommentId(comment.id);
-                    setEditContent(comment.content);
-                  }}
-                >
-                  Edit
-                </button>
-              )}
-
-              {currentUser &&
-                (currentUser.id === comment.authorId ||
-                  currentUser.role === "admin") && (
-                  <button onClick={() => handleCommentDelete(comment.id)}>
-                    Delete
-                  </button>
-                )}
+                {currentUser &&
+                  (currentUser.id === comment.authorId ||
+                    currentUser.role === "admin") &&
+                  comment.id !== editingCommentId && (
+                    <button onClick={() => handleCommentDelete(comment.id)}>
+                      Delete
+                    </button>
+                  )}
+              </div>
             </div>
           ))
         ) : (
           <p>No comments yet. Be the first to comment!</p>
         )}
-
-        <form className="comments-form" onSubmit={handleCommentCreate}>
-          <input
-            type="text"
-            id="comment"
-            value={comment}
-            placeholder="Leave a comment..."
-            onChange={(e) => setComment(e.target.value)}
-            required
-          />
-
-          <button type="submit">Post Comment</button>
-        </form>
       </div>
     </>
   );
