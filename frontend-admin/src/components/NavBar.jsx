@@ -14,7 +14,7 @@ function NavBar() {
           {user ? (
             <>
               <li>
-                <NavLink to="/">All Posts</NavLink>
+                <NavLink to="/posts">All Posts</NavLink>
               </li>
               <li>
                 <NavLink to="/new-post">Create New Post</NavLink>
