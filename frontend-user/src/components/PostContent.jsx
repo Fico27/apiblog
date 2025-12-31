@@ -146,8 +146,10 @@ function PostContent() {
     <>
       <div className="post-container">
         <h1>{post.title}</h1>
-        <p>By: {post.author.username}</p>
-        <p>{post.content}</p>
+        <p className="author">
+          By: <b> {post.author.username}</b>
+        </p>
+        <p className="postContent">{post.content}</p>
       </div>
 
       <div className="comments-container">
