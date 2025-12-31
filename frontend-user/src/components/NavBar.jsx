@@ -26,6 +26,7 @@ function NavBar() {
           ) : (
             <li>
               <button
+                className="logout-btn"
                 onClick={() => {
                   localStorage.removeItem("token");
                   localStorage.removeItem("user");

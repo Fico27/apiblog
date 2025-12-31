@@ -12,7 +12,7 @@
 
 .nav-container {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   width: 25%;
 }
@@ -26,10 +26,13 @@
 }
 .nav-container a:hover {
   background-color: #f0f0f0;
+  font-weight: bold;
 }
 
 .nav-container ul {
   display: flex;
+  justify-content: center;
+  align-items: center;
   list-style: none;
   gap: 2rem;
   padding: 0;
@@ -39,6 +42,23 @@
 .navbar-title {
   font-size: 1.8rem;
   font-weight: 600;
+}
+
+.logout-btn {
+  color: #333;
+  text-decoration: none;
+  padding: 0.5rem;
+  margin: 0;
+  border-radius: 6px;
+  background-color: white;
+  transition: background-color 0.2s, color 0.2s;
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+.logout-btn:hover {
+  background-color: #f0f0f0;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {
