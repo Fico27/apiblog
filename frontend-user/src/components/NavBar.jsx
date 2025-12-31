@@ -1,7 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/NavBar.css";
 
 function NavBar() {
+  const currentUser = JSON.parse(localStorage.getItem("user") || "null");
+  const navigate = useNavigate();
   return (
     <div className="navbar-container">
       <h2 className="navbar-title">I Am Your Blog</h2>
@@ -11,12 +13,29 @@ function NavBar() {
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
-          <li>
-            <NavLink to="/sign-up">Sign up</NavLink>
-          </li>
-          <li>
-            <NavLink to="/login">Login</NavLink>
-          </li>
+
+          {!currentUser ? (
+            <>
+              <li>
+                <NavLink to="/sign-up">Sign up</NavLink>
+              </li>
+              <li>
+                <NavLink to="/login">Login</NavLink>
+              </li>
+            </>
+          ) : (
+            <li>
+              <button
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  localStorage.removeItem("user");
+                  navigate("/");
+                }}
+              >
+                Logout
+              </button>
+            </li>
+          )}
         </ul>
       </nav>
     </div>

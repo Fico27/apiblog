@@ -29,18 +29,6 @@ function Login() {
         throw new Error(errData.error || "Login Failed");
       }
 
-      // What gets returned on successful login:
-
-      // res.json({
-      //     message: "Login successful",
-      //     token,
-      //     user: {
-      //       id: user.id,
-      //       username: user.username,
-      //       role: user.role,
-      //     },
-      //   });
-
       const data = await response.json();
 
       localStorage.setItem("token", data.token);
