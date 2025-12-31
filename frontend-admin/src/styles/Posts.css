@@ -82,6 +82,10 @@
   width: 30px;
 }
 
+.error-message {
+  text-align: center;
+}
+
 /* Mobile */
 @media (max-width: 768px) {
   .post-card {

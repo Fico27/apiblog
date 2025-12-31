@@ -38,7 +38,8 @@ function Posts() {
   }, []);
 
   if (loading) return <p>Loading posts...</p>;
-  if (error) return <p>Error loading posts: {error}</p>;
+  if (error)
+    return <h2 className="error-message">Error loading posts: {error}</h2>;
 
   const handleDelete = async (postId) => {
     if (!confirm("Are you sure you want to delete? This can not be undone.")) {

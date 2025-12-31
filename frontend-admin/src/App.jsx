@@ -5,6 +5,7 @@ import Posts from "./components/Posts";
 import PostContent from "./components/PostContent";
 import Login from "./components/Login";
 import NewPost from "./components/NewPost";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/posts/:postId" element={<PostContent />} />
           <Route path="/" element={<Login />} />
           <Route path="/new-post" element={<NewPost />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
