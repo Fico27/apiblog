@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function NewPost() {
@@ -8,6 +8,13 @@ function NewPost() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (!user || user.role !== "admin") {
+      navigate("/");
+    }
+  }, [navigate]);
 
   if (loading) return <p>Loading Post...</p>;
   if (error) return <p>Error loading posts: {error}</p>;
