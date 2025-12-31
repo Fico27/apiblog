@@ -89,9 +89,7 @@ function PostContent() {
         <div className="form-card">
           <h1 className="form-title">Edit Post</h1>
 
-          {error && (
-            <p style={{ color: "red", textAlign: "center" }}>{error}</p>
-          )}
+          {error && <h2 className="error-message"> {error}</h2>}
 
           <form onSubmit={handleSubmit}>
             <div className="form-group">

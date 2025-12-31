@@ -10,14 +10,16 @@ function NewPost() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const JSONuser = localStorage.getItem("user");
+    const user = JSON.parse(JSONuser);
     if (!user || user.role !== "admin") {
       navigate("/");
     }
   }, [navigate]);
 
   if (loading) return <p>Loading Post...</p>;
-  if (error) return <p>Error loading posts: {error}</p>;
+  if (error)
+    return <h2 className="error-message">Error loading posts: {error}</h2>;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
