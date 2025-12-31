@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import "../styles/Posts.css";
 
 function Posts() {
   // Will get all post info here from backend
@@ -67,13 +69,40 @@ function Posts() {
 
   return (
     <div className="posts-container">
+      <div className="posts-header">
+        <h1>All Posts</h1>
+        <NavLink to="/new-post" className="new-post-btn">
+          + New Post
+        </NavLink>
+      </div>
+
       {posts.map((post) => (
         <div key={post.id} className="post-card">
-          <h2>{post.title}</h2>
-          <p>Posted on: {new Date(post.createdAt).toLocaleDateString()}</p>
-          <p>{post.published ? "Published" : "Not Published Yet"}</p>
-          <a href={`/posts/${post.id}`}>Edit</a>
-          <button onClick={() => handleDelete(post.id)}>Delete</button>
+          <div className="post-info">
+            <h2 className="post-title">{post.title}</h2>
+            <p className="post-date">
+              {new Date(post.createdAt).toLocaleDateString()}
+            </p>
+            <span
+              className={`status-badge ${
+                post.published ? "published" : "draft"
+              }`}
+            >
+              {post.published ? "Published" : "Draft"}
+            </span>
+          </div>
+
+          <div className="post-actions">
+            <NavLink to={`/posts/${post.id}`} className="comment-btns1">
+              <img src="/assets/edit.png" alt="" />
+            </NavLink>
+            <button
+              onClick={() => handleDelete(post.id)}
+              className="comment-btns1"
+            >
+              <img src="/assets/delete.png" alt="" />
+            </button>
+          </div>
         </div>
       ))}
     </div>

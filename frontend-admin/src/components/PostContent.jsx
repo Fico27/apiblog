@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "../styles/PostContent.css";
 
 function PostContent() {
   const [post, setPost] = useState(null);
@@ -84,7 +85,7 @@ function PostContent() {
 
   return (
     <>
-      <div className="edit-post-container">
+      <div className="form-container">
         <form onSubmit={handleSubmit}>
           <input
             type="text"

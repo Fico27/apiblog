@@ -1,0 +1,134 @@
+.posts-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.posts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.posts-header h1 {
+  font-size: 2rem;
+}
+
+.new-post-btn {
+  padding: 0.75rem 1.5rem;
+  background: #28a745;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.new-post-btn:hover {
+  background: #218838;
+}
+
+.post-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.post-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.post-title {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.post-date {
+  color: #666;
+  margin-bottom: 0.75rem;
+}
+
+.status-badge {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status-published {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-draft {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.post-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-edit {
+  padding: 0.75rem 1.5rem;
+  background: #007bff;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-edit:hover {
+  background: #0056b3;
+}
+
+.btn-delete {
+  padding: 0.75rem 1.5rem;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: #c82333;
+}
+
+.comment-btns1 {
+  background-color: white;
+  margin-top: 0;
+  padding: 0.2rem;
+}
+
+.comment-btns1:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.comment-btns1 img {
+  width: 30px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .post-card {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .post-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
