@@ -43,37 +43,67 @@ function NewPost() {
 
   return (
     <>
-      <div className="edit-post-container">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Title"
-            required
-          />
+      <div className="form-container">
+        <div className="form-card">
+          <h1 className="form-title">New Post</h1>
 
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="Write something here!"
-            required
-          />
+          {error && (
+            <p style={{ color: "red", textAlign: "center" }}>{error}</p>
+          )}
 
-          <label htmlFor="published">Publish</label>
-          <input
-            type="checkbox"
-            id="published"
-            checked={published}
-            onChange={(e) => setPublished(e.target.checked)}
-          />
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label className="form-label" htmlFor="title">
+                Title
+              </label>
+              <input
+                type="text"
+                id="title"
+                className="form-input"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+              />
+            </div>
 
-          <button type="submit">Submit</button>
-          <button type="button" onClick={() => navigate("/posts")}>
-            Cancel
-          </button>
-        </form>
+            <div className="form-group">
+              <label className="form-label" htmlFor="content">
+                Content
+              </label>
+              <textarea
+                id="content"
+                className="form-textarea"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="publish-group">
+              <input
+                type="checkbox"
+                id="published"
+                className="publish-checkbox"
+                checked={published}
+                onChange={(e) => setPublished(e.target.checked)}
+              />
+              <label htmlFor="published">Publish this post</label>
+            </div>
+
+            <div className="form-actions">
+              <button
+                type="button"
+                className="btn-secondary"
+                onClick={() => navigate("/posts")}
+              >
+                Cancel
+              </button>
+              <button type="submit" className="btn-primary">
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );

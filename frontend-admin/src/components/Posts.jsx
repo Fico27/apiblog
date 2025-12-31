@@ -84,9 +84,7 @@ function Posts() {
               {new Date(post.createdAt).toLocaleDateString()}
             </p>
             <span
-              className={`status-badge ${
-                post.published ? "published" : "draft"
-              }`}
+              className={`status ${post.published ? "published" : "draft"}`}
             >
               {post.published ? "Published" : "Draft"}
             </span>

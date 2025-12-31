@@ -17,9 +17,6 @@ function NavBar() {
                 <NavLink to="/posts">All Posts</NavLink>
               </li>
               <li>
-                <NavLink to="/new-post">Create New Post</NavLink>
-              </li>
-              <li>
                 <button
                   className="logout-btn"
                   onClick={() => {
