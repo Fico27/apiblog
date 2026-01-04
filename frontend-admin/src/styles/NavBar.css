@@ -22,6 +22,7 @@
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 6px;
+  white-space: nowrap;
   transition: background-color 0.2s, color 0.2s;
 }
 .nav-container a:hover {
@@ -66,5 +67,9 @@
     flex-direction: column;
     gap: 1rem;
     text-align: center;
+  }
+
+  .nav-container {
+    justify-content: center;
   }
 }
