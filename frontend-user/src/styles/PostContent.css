@@ -80,9 +80,6 @@
 
 .comments-form {
   margin: 1rem;
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center; */
 }
 
 .comment-btns1 {
@@ -107,4 +104,23 @@
 
 .comment-btns1 img {
   width: 30px;
+}
+
+@media (max-width: 768px) {
+  .comments-form {
+    width: 90%;
+    justify-content: center;
+    display: flex;
+  }
+
+  .comments-form input {
+    width: 50%;
+    font-size: 0.8rem;
+  }
+  .comments-form button {
+    padding: 0.5rem;
+    width: 30%;
+    margin: 0;
+    font-size: 0.9rem;
+  }
 }
