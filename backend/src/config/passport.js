@@ -6,7 +6,7 @@ const prisma = require("../lib/prisma");
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_id,
+      clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
     },
@@ -23,7 +23,7 @@ passport.use(
 
         //If no display name make it the start of the email
         if (!user) {
-          user = await prisma.create({
+          user = await prisma.user.create({
             data: {
               email,
               username: profile.displayName || email.split("@")[0],
