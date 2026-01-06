@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 
@@ -9,6 +9,31 @@ function Login() {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+    if (token) {
+      localStorage.setItem("token", token);
+
+      fetch("/api/auth/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to fetch user");
+        })
+        .then((data) => {
+          localStorage.setItem("user", JSON.stringify(data.user));
+        })
+        .catch((err) => {
+          console.error(err);
+          setError("Could not load user info");
+        })
+        .finally(() => navigate("/", { replace: true }));
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
