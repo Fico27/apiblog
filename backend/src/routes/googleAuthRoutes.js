@@ -17,7 +17,7 @@ googleAuthRouter.get(
       username: req.user.username,
       role: req.user.role,
     });
-    res.redirect(`http://localhost:5173/?token=${token}`);
+    res.redirect(`http://localhost:5173/login/?token=${token}`);
   }
 );
 

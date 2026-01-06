@@ -23,6 +23,7 @@ function Login() {
       })
         .then((res) => {
           if (!res.ok) throw new Error("Failed to fetch user");
+          return res.json();
         })
         .then((data) => {
           localStorage.setItem("user", JSON.stringify(data.user));
@@ -105,6 +106,24 @@ function Login() {
           Don't have an account? <NavLink to="/sign-up">Sign up</NavLink>
         </p>
       </form>
+      <div style={{ marginTop: "2rem", textAlign: "center" }}>
+        <a href="http://localhost:3000/auth/google">
+          <button
+            type="button"
+            style={{
+              padding: "0.75rem 1.5rem",
+              background: "#4285F4",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              fontSize: "1rem",
+              cursor: "pointer",
+            }}
+          >
+            Log in with Google
+          </button>
+        </a>
+      </div>
     </div>
   );
 }
