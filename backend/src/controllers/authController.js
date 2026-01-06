@@ -38,6 +38,10 @@ async function registerUser(req, res) {
   try {
     const { username, email, password } = req.body;
 
+    if (!password) {
+      return res.status(400).json({ error: "Password is required" });
+    }
+
     const user = await userService.createUser({ username, email, password });
 
     return res.status(201).json({ user });
@@ -50,6 +54,10 @@ async function registerUser(req, res) {
 async function registerAdmin(req, res) {
   try {
     const { username, email, password } = req.body;
+
+    if (!password) {
+      return res.status(400).json({ error: "Password is required" });
+    }
 
     const user = await userService.createUser({
       username,
