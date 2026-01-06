@@ -139,7 +139,10 @@ function PostContent() {
   };
 
   if (loading) return <p>Loading Post...</p>;
-  if (error) return <p>Error loading posts: {error}</p>;
+  if (error)
+    return (
+      <p className="error">Error loading posts or not logged in: {error}</p>
+    );
   if (!post) return <p>Post not found!</p>;
 
   return (

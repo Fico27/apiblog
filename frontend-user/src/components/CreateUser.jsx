@@ -115,6 +115,12 @@ function CreateUser() {
         <p className="already-user">
           Already have an account? <NavLink to="/login">Log in</NavLink>
         </p>
+        <a href="http://localhost:3000/auth/google" className="google-btn">
+          <img
+            src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png"
+            alt="Sign in with Google"
+          />
+        </a>
       </form>
     </div>
   );

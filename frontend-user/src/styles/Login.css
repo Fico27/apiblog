@@ -17,3 +17,11 @@
 .login-title {
   margin: 1rem 0;
 }
+
+.google-btn {
+  margin: 0 auto;
+}
+
+.google-btn img {
+  height: 50px;
+}

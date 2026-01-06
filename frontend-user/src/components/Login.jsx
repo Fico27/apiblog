@@ -105,25 +105,13 @@ function Login() {
         <p className="already-user">
           Don't have an account? <NavLink to="/sign-up">Sign up</NavLink>
         </p>
-      </form>
-      <div style={{ marginTop: "2rem", textAlign: "center" }}>
-        <a href="http://localhost:3000/auth/google">
-          <button
-            type="button"
-            style={{
-              padding: "0.75rem 1.5rem",
-              background: "#4285F4",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              fontSize: "1rem",
-              cursor: "pointer",
-            }}
-          >
-            Log in with Google
-          </button>
+        <a href="http://localhost:3000/auth/google" className="google-btn">
+          <img
+            src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png"
+            alt="Sign in with Google"
+          />
         </a>
-      </div>
+      </form>
     </div>
   );
 }

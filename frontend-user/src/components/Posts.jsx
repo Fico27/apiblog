@@ -24,7 +24,7 @@ function Posts() {
   }, []);
 
   if (loading) return <p>Loading posts...</p>;
-  if (error) return <p>Error loading posts: {error}</p>;
+  if (error) return <p className="error">Error loading posts: {error}</p>;
 
   return (
     <div className="posts-container">
