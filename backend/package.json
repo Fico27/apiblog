@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js",
+    "migrate": "prisma migrate deploy",
+    "migrate-and-start": "/bin/sh -c \"npx prisma migrate deploy && node seed.js && && npm start\"",
+    "prisma:generate": "prisma generate"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +17,7 @@
     "@prisma/adapter-pg": "^7.0.1",
     "@prisma/client": "^7.0.1",
     "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "express-session": "^1.18.2",
