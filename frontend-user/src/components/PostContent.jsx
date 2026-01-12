@@ -78,14 +78,17 @@ function PostContent() {
   const handleCommentEdit = async (commentId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`/api/posts/comments/${commentId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ content: editContent }),
-      });
+      const response = await fetch(
+        `${api_base}/api/posts/comments/${commentId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ content: editContent }),
+        }
+      );
       if (!response.ok) {
         const errData = await response.json();
         throw new Error(errData.error || "Login Failed");
