@@ -3,6 +3,8 @@ const googleAuthRouter = Router();
 const passport = require("../config/passport");
 const { signToken } = require("../utils/jwt");
 
+const FRONTEND_BASE = process.env.FRONTEND_ADMIN_URL || "http://localhost:5173";
+
 googleAuthRouter.get(
   "/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
@@ -17,7 +19,9 @@ googleAuthRouter.get(
       username: req.user.username,
       role: req.user.role,
     });
-    res.redirect(`http://localhost:5173/login/?token=${token}`);
+
+    //Reminder to self. Change back to http://localhost:3000 for local
+    res.redirect(`${FRONTEND_BASE}/login/?token=${token}`);
   }
 );
 
