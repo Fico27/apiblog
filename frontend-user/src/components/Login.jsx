@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/Login.css";
+const api_base = import.meta.env.VITE_API_BASE;
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -42,7 +43,7 @@ function Login() {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch(`${api_base}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -105,7 +106,7 @@ function Login() {
         <p className="already-user">
           Don't have an account? <NavLink to="/sign-up">Sign up</NavLink>
         </p>
-        <a href="http://localhost:3000/auth/google" className="google-btn">
+        <a href={`${api_base}/auth/google`} className="google-btn">
           <img
             src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png"
             alt="Sign in with Google"
