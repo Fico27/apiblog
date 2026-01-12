@@ -9,6 +9,7 @@ const passport = require("./config/passport");
 
 const app = express();
 app.use(express.json());
+app.set("trust proxy", 1);
 
 const allowedOrigins = [
   "http://localhost:3000",
