@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import "../styles/Posts.css";
 
+const api_base = import.meta.env.VITE_API_BASE;
+
 function Posts() {
   // Will get all post info here from backend
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const api_base = import.meta.env.VITE_API_BASE;
 
   useEffect(() => {
     async function fetchPosts() {
