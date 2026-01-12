@@ -7,10 +7,12 @@ function Posts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const api_base = import.meta.env.VITE_API_BASE;
+
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const response = await fetch("/api/posts");
+        const response = await fetch(`${api_base}/api/posts`);
         if (!response.ok) throw new Error("Failed to fetch posts");
         const data = await response.json();
         setPosts(data);
