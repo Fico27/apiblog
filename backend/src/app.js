@@ -14,7 +14,8 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
   "http://localhost:5174",
-  // Add my Netlify URLs later
+  "https://apiblogadmin.netlify.app",
+  "https://apibloguser.netlify.app",
 ];
 
 app.use(
