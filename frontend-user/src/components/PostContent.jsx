@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/PostContent.css";
 
+const api_base = import.meta.env.VITE_API_BASE;
+
 function PostContent() {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -22,7 +24,7 @@ function PostContent() {
 
     async function fetchPost() {
       try {
-        const response = await fetch(`/api/posts/${postId}`);
+        const response = await fetch(`${api_base}/api/posts/${postId}`);
         if (!response.ok) throw new Error("Failed to fetch posts");
         const data = await response.json();
         setPost(data);
@@ -46,13 +48,16 @@ function PostContent() {
     }
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`/api/posts/comments/${commentId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `${api_base}/api/posts/comments/${commentId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         const errData = await response.json();
@@ -109,7 +114,7 @@ function PostContent() {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`/api/posts/${postId}/comments`, {
+      const response = await fetch(`${api_base}/api/posts/${postId}/comments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
