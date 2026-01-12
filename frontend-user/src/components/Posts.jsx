@@ -39,7 +39,7 @@ function Posts() {
           </p>
           {/* To show a little bit of the post */}
           <p className="summary">{post.content.substring(0, 200)}...</p>
-          <a className="read-link" href={`${api_base}/posts/${post.id}`}>
+          <a className="read-link" href={`/posts/${post.id}`}>
             Read More
           </a>
         </div>
