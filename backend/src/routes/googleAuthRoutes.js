@@ -7,7 +7,10 @@ const FRONTEND_BASE = process.env.FRONTEND_ADMIN_URL || "http://localhost:5173";
 
 googleAuthRouter.get(
   "/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+    session: false,
+  })
 );
 
 googleAuthRouter.get(
