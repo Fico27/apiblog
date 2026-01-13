@@ -1,5 +1,5 @@
-const Router = require("express");
-const googleAuthRouter = Router();
+const express = require("express");
+const googleAuthRouter = express.Router();
 const passport = require("../config/passport");
 const { signToken } = require("../utils/jwt");
 
@@ -12,7 +12,22 @@ googleAuthRouter.get(
 
 googleAuthRouter.get(
   "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
+  (req, res, next) => {
+    passport.authenticate("google", (err, user, info) => {
+      if (err) {
+        console.error("Google OAuth error:", err);
+        if (err.oauthError) {
+          console.error("oauthError status:", err.oauthError.statusCode);
+          console.error("oauthError data:", err.oauthError.data);
+        }
+        return res.status(500).send("OAuth failed");
+      }
+      if (!user) return res.redirect(`${FRONTEND_BASE}/login`);
+
+      req.user = user;
+      next();
+    })(req, res, next);
+  },
   (req, res) => {
     const token = signToken({
       id: req.user.id,
@@ -20,8 +35,7 @@ googleAuthRouter.get(
       role: req.user.role,
     });
 
-    //Reminder to self. Change back to http://localhost:3000 for local
-    res.redirect(`${FRONTEND_BASE}/login?token=${token}`);
+    res.redirect(`${FRONTEND_BASE}/login?token=${encodeURIComponent(token)}`);
   }
 );
 
