@@ -21,7 +21,7 @@ googleAuthRouter.get(
     });
 
     //Reminder to self. Change back to http://localhost:3000 for local
-    res.redirect(`${FRONTEND_BASE}/login/?token=${token}`);
+    res.redirect(`${FRONTEND_BASE}/login?token=${token}`);
   }
 );
 
