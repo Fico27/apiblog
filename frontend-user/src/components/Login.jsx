@@ -17,7 +17,7 @@ function Login() {
     if (token) {
       localStorage.setItem("token", token);
 
-      fetch("/api/auth/me", {
+      fetch(`${api_base}/api/auth/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
