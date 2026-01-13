@@ -44,13 +44,13 @@ app.use(
   })
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use("/api", postRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/posts", commentRoutes);
 app.use("/auth", googleAuthRouter);
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

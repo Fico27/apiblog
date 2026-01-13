@@ -10,6 +10,7 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL:
         "https://apiblog-production-91ab.up.railway.app/auth/google/callback",
+      proxy: true,
     },
 
     async (accessToken, refreshToken, profile, done) => {
