@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../styles/PostContent.css";
+const api_base = import.meta.env.VITE_API_BASE || "";
 
 function PostContent() {
   const [post, setPost] = useState(null);
@@ -24,7 +25,7 @@ function PostContent() {
 
     async function fetchPost() {
       try {
-        const response = await fetch(`/api/admin/posts/${postId}`, {
+        const response = await fetch(`${api_base}/api/admin/posts/${postId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -61,7 +62,7 @@ function PostContent() {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`/api/admin/posts/${postId}`, {
+      const response = await fetch(`${api_base}/api/admin/posts/${postId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
