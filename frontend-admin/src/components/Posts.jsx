@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/Posts.css";
+const api_base = import.meta.env.VITE_API_BASE || "";
 
 function Posts() {
   // Will get all post info here from backend
@@ -19,7 +20,7 @@ function Posts() {
           return;
         }
 
-        const response = await fetch("/api/admin/posts", {
+        const response = await fetch(`${api_base}/api/admin/posts`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -47,7 +48,7 @@ function Posts() {
     }
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`/api/admin/posts/${postId}`, {
+      const response = await fetch(`${api_base}/api/admin/posts/${postId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
