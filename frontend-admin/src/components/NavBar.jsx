@@ -16,6 +16,13 @@ function NavBar() {
               <li>
                 <NavLink to="/posts">All Posts</NavLink>
               </li>
+              <a
+                href="https://apibloguser.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit Public Blog
+              </a>
               <li>
                 <button
                   className="logout-btn"
