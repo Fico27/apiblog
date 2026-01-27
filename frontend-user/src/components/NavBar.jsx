@@ -14,6 +14,16 @@ function NavBar() {
             <NavLink to="/">Home</NavLink>
           </li>
 
+          <li>
+            <a
+              href="https://apiblogadmin.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit Admin Dashboard
+            </a>
+          </li>
+
           {!currentUser ? (
             <>
               <li>
