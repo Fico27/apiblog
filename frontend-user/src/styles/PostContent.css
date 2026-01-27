@@ -19,7 +19,9 @@
   text-align: center;
 }
 .postContent {
-  overflow-wrap: break-word;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   text-wrap: wrap;
   text-align: center;
   white-space: normal;
