@@ -19,6 +19,7 @@
   text-align: center;
 }
 .postContent {
+  text-wrap: wrap;
   text-align: center;
   white-space: normal;
   padding: 1rem;
@@ -122,5 +123,9 @@
     width: 30%;
     margin: 0;
     font-size: 0.9rem;
+  }
+
+  .comment-content {
+    text-align: center;
   }
 }

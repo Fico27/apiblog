@@ -208,7 +208,7 @@ function PostContent() {
                   </button>
                 </>
               ) : (
-                <p>{comment.content}</p>
+                <p className="comment-content">{comment.content}</p>
               )}
               <div className="edit-btns">
                 {currentUser &&
