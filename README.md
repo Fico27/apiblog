@@ -61,9 +61,9 @@ PostgreSQL (local dev + Railway)
 ### Project Structure (Monorepo)
 
 apiblog/
-├── backend/               # Express + Prisma API
-├── frontend-user/         # Public reader site (Vite + React)
-└── frontend-admin/        # Private admin dashboard (Vite + React)
+- backend/               # Express + Prisma API
+- frontend-user/         # Public reader site (Vite + React)
+- frontend-admin/        # Private admin dashboard (Vite + React)
 
 ## Live Links
 
